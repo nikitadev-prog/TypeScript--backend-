@@ -1,3 +1,4 @@
+import { ApolloServerPluginLandingPageLocalDefault } from '@apollo/server/plugin/landingPage/default';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
@@ -14,6 +15,7 @@ import { SeedModule } from './seed/seed.module';
       sortSchema: true,
       playground: false,
       introspection: true,
+      plugins: [ApolloServerPluginLandingPageLocalDefault({ embed: true })],
     }),
     PrismaModule,
     ProfileModule,
