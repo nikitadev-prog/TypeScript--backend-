@@ -74,7 +74,7 @@ const PROJECTS = [
     description:
       'GraphQL API визитки: профиль, навыки, опыт и проекты на NestJS + Prisma',
     url: null as string | null,
-    repoUrl: 'https://github.com/Nikitadev-prog/digital-card',
+    repoUrl: 'https://github.com/nikitadev-prog/TypeScript--backend-',
     sortOrder: 2,
   },
 ];

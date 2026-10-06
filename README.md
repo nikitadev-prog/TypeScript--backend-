@@ -2,6 +2,11 @@
 
 GraphQL-бэкенд цифровой визитки (NestJS + Prisma + Apollo).
 
+**Репозиторий:** https://github.com/nikitadev-prog/TypeScript--backend-
+
+После `docker compose up --build` Apollo Sandbox доступен по адресу  
+http://localhost:3000/graphql
+
 ## Стек
 
 - TypeScript / Node.js

@@ -91,7 +91,7 @@ export class SeedService implements OnModuleInit {
               name: 'Digital Business Card API',
               description:
                 'GraphQL API визитки: профиль, навыки, опыт и проекты на NestJS + Prisma',
-              repoUrl: 'https://github.com/Nikitadev-prog/digital-card',
+              repoUrl: 'https://github.com/nikitadev-prog/TypeScript--backend-',
               sortOrder: 2,
             },
           ],
