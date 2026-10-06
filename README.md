@@ -1,101 +1,66 @@
 # Digital Business Card API
 
-GraphQL-бэкенд цифровой визитки (NestJS + Prisma + Apollo).
+Тестовое задание: GraphQL API цифровой визитки.
 
-**Репозиторий:** https://github.com/nikitadev-prog/TypeScript--backend-
+Стек: NestJS, TypeScript, Prisma, PostgreSQL, GraphQL (Apollo), Docker.
 
-После `docker compose up --build` Apollo Sandbox доступен по адресу  
-http://localhost:3000/graphql
+Репозиторий: https://github.com/nikitadev-prog/TypeScript--backend-
 
-## Стек
+## Как запустить
 
-- TypeScript / Node.js
-- NestJS
-- GraphQL (Apollo Server + Apollo Sandbox)
-- Prisma + PostgreSQL
-- Docker / Docker Compose
-
-## Быстрый старт
+Нужен Docker. Из корня проекта:
 
 ```bash
 docker compose up --build
 ```
 
-После запуска:
+Потом открыть http://localhost:3000/graphql — там Apollo Sandbox.
 
-- Apollo Sandbox: http://localhost:3000/graphql
-- Health: http://localhost:3000/health
+Миграции и сид данных отрабатывают сами при старте, руками ничего заполнять не нужно.
 
-База поднимается, миграции применяются, данные профиля заполняются автоматически при старте.
-
-### Пример запроса
+## Пример запроса
 
 ```graphql
 query {
   profile {
     name
     description
-    githubUrl
-    websiteUrl
     skills {
       name
-      category
     }
     experience {
       company
       position
-      startDate
-      endDate
-      achievements
     }
     projects {
       name
-      url
-      repoUrl
     }
   }
 }
 ```
 
-## Локальная разработка
+Можно докинуть любые поля из схемы — sandbox сам подсказывает.
+
+## Структура
+
+```
+src/
+  prisma/   — PrismaService
+  profile/  — модели, resolver, service
+  seed/     — заполнение данными при старте
+prisma/     — схема и миграции
+```
+
+Логика примерно такая: resolver дергает service, service ходит в Prisma. Сид поднимается через SeedService, если профиля ещё нет.
+
+## Без Docker (dev)
 
 ```bash
 docker compose up db -d
 cp .env.example .env
-npm install
+npm i
 npx prisma migrate deploy
 npm run start:dev
 ```
 
-## Архитектура
-
-```
-src/
-  prisma/     # доступ к БД (PrismaService)
-  profile/    # GraphQL models / resolver / service
-  seed/       # автозаполнение при старте
-  health.controller.ts
-prisma/
-  schema.prisma
-  migrations/
-  seed.ts
-```
-
-- **Resolver** — GraphQL-слой и field resolvers для вложенных данных
-- **Service** — бизнес-логика и запросы к Prisma
-- **SeedService** — идемпотентная инициализация данных на старте
-- **entrypoint.sh** — migrate deploy перед запуском API в Docker
-
-## Деплой (Render)
-
-В репозитории есть `render.yaml`. Можно создать Blueprint на [Render](https://render.com) из этого файла — поднимутся Web Service + PostgreSQL.
-
-## Скрипты
-
-| Команда | Описание |
-|---------|----------|
-| `npm run start:dev` | Dev-режим |
-| `npm run build` | Сборка |
-| `npm run start:prod` | Production |
-| `npx prisma studio` | UI для БД |
-| `npm run db:seed` | Ручной seed |
+`.env` смотри в `.env.example`.
