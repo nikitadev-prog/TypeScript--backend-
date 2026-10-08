@@ -9,7 +9,7 @@ import { ProfileService } from './profile.service';
 export class ProfileResolver {
   constructor(private readonly profileService: ProfileService) {}
 
-  @Query(() => Profile, { description: 'Personal profile with nested relations' })
+  @Query(() => Profile)
   profile() {
     return this.profileService.findProfile();
   }

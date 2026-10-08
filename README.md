@@ -45,10 +45,10 @@ query {
 
 ```
 src/
-  prisma/   — PrismaService
-  profile/  — модели, resolver, service
-  seed/     — заполнение данными при старте
-prisma/     — схема и миграции
+  prisma/
+  profile/
+  seed/
+prisma/
 ```
 
 Логика примерно такая: resolver дергает service, service ходит в Prisma. Сид поднимается через SeedService, если профиля ещё нет.
@@ -60,7 +60,7 @@ docker compose up db -d
 cp .env.example .env
 npm i
 npx prisma migrate deploy
-npm run start:dev 
+npm run start:dev
 ```
 
 `.env` смотри в `.env.example`.
