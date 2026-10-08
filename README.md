@@ -60,7 +60,7 @@ docker compose up db -d
 cp .env.example .env
 npm i
 npx prisma migrate deploy
-npm run start:dev
+npm run start:dev 
 ```
 
 `.env` смотри в `.env.example`.
